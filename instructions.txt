@@ -31,10 +31,10 @@ Display results on frontend:
 Original: 85% AI
 Rewritten: 18% AI
 Let users click “Try Again” if score is too high.
+This is the last step, though
 🔹 3. Frontend Enhancements
 Add:
 "Copy Output" button
-"Download as .txt" button
 Optional toggle: "Preserve tone/style" (boolean flag to backend)
 Improve layout and styling (CSS/Responsive)
 Use Tailwind or plain CSS
