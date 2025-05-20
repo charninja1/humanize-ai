@@ -1,64 +1,44 @@
 import { useState, useRef, useEffect } from 'react';
+import Head from 'next/head';
 
 export default function Home() {
   const [input, setInput] = useState('');
   const [rewritten, setRewritten] = useState('');
   const [loading, setLoading] = useState(false);
-  const [detectLoading, setDetectLoading] = useState(false);
+  // AI detection loading state removed
   const [error, setError] = useState('');
   const [preserveStyle, setPreserveStyle] = useState(false);
   const [humanizationStrength, setHumanizationStrength] = useState('medium');
-  const [originalScore, setOriginalScore] = useState(null);
-  const [rewrittenScore, setRewrittenScore] = useState(null);
+  // AI percentage feature removed
   const [characterCount, setCharacterCount] = useState(0);
   const [copied, setCopied] = useState(false);
   const [showOriginalComparison, setShowOriginalComparison] = useState(false);
   const outputRef = useRef(null);
   const inputRef = useRef(null);
 
-  async function detectText(text) {
-    setError('');
-    try {
-      const res = await fetch('/api/detect', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          text,
-          isRewritten: text !== input 
-        }),
-      });
-      
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.message || 'Detection failed');
-      }
-      
-      const data = await res.json();
-      return data.aiProbability;
-    } catch (err) {
-      console.error('Detection error:', err);
-      setError(`Detection error: ${err.message}`);
-      return null;
-    }
-  }
+  // AI detection function removed
 
   async function handleRewrite() {
-    if (!input.trim()) {
+    const trimmedInput = input.trim();
+    if (!trimmedInput) {
       setError('Please enter some text to humanize');
+      return;
+    }
+    
+    if (trimmedInput.length < 250) {
+      setError('Please enter at least 250 characters for better results');
+      return;
+    }
+    
+    if (trimmedInput.length > 8000) {
+      setError('Text exceeds the maximum limit of 8000 characters');
       return;
     }
     
     setError('');
     setLoading(true);
-    setRewrittenScore(null);
     
     try {
-      if (originalScore === null) {
-        setDetectLoading(true);
-        const score = await detectText(input);
-        setOriginalScore(score);
-        setDetectLoading(false);
-      }
       
       const res = await fetch('/api/rewrite', {
         method: 'POST',
@@ -78,10 +58,7 @@ export default function Home() {
       const data = await res.json();
       setRewritten(data.rewritten);
       
-      setDetectLoading(true);
-      const rewrittenScoreValue = await detectText(data.rewritten);
-      setRewrittenScore(rewrittenScoreValue);
-      setDetectLoading(false);
+      // AI percentage detection removed
       
     } catch (err) {
       setError(err.message || 'An error occurred while processing your request');
@@ -92,7 +69,6 @@ export default function Home() {
   }
 
   function handleTryAgain() {
-    setRewrittenScore(null);
     if (humanizationStrength === 'light') {
       setHumanizationStrength('medium');
     } else if (humanizationStrength === 'medium') {
@@ -116,14 +92,7 @@ export default function Home() {
     }
   }
 
-  function getScoreColor(score) {
-    if (score === null) return '#a0aec0';
-    if (score < 20) return '#38a169'; // Green - very human-like
-    if (score < 40) return '#68d391'; // Light green - mostly human
-    if (score < 60) return '#f6ad55'; // Orange - mixed
-    if (score < 80) return '#ed8936'; // Dark orange - mostly AI
-    return '#e53e3e'; // Red - very AI-like
-  }
+  // AI score color function removed
 
   useEffect(() => {
     // Add keyframes and styles
@@ -147,7 +116,101 @@ export default function Home() {
   }, []);
 
   return (
-    <div style={{
+    <>
+      <Head>
+        <title>Humanize.ai - Make AI Text Sound Human | Bypass AI Detection</title>
+        <meta name="description" content="Transform AI-generated text into natural human writing. Our AI text humanizer helps students and professionals make their essays and content sound naturally human and bypass AI detection tools." />
+        <meta name="keywords" content="AI text humanizer, make AI text sound human, bypass AI detection, humanize AI text, AI essay rewriter, AI paraphraser, AI text converter, ChatGPT humanizer, AI writing tool" />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://humanize.ai/" />
+        <meta property="og:title" content="Humanize.ai - Make AI Text Sound Human | Bypass AI Detection" />
+        <meta property="og:description" content="Transform AI-generated text into natural human writing. Our tool helps students make their essays sound naturally human and undetectable by AI checkers." />
+        <meta property="og:image" content="https://humanize.ai/og-image.jpg" />
+        
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://humanize.ai/" />
+        <meta property="twitter:title" content="Humanize.ai - Make AI Text Sound Human | Bypass AI Detection" />
+        <meta property="twitter:description" content="Transform AI-generated text into natural human writing. Our tool helps students make their essays sound naturally human and undetectable by AI checkers." />
+        <meta property="twitter:image" content="https://humanize.ai/og-image.jpg" />
+        
+        {/* Canonical URL */}
+        <link rel="canonical" href="https://humanize.ai/" />
+        
+        {/* Favicon */}
+        <link rel="icon" href="/favicon.ico" />
+        
+        {/* Robots */}
+        <meta name="robots" content="index, follow" />
+        
+        {/* Schema.org structured data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Humanize.ai",
+            "url": "https://humanize.ai/",
+            "description": "Transform AI-generated text into natural human writing. Our AI text humanizer helps students and professionals make their essays and content sound naturally human and bypass AI detection tools.",
+            "applicationCategory": "Education",
+            "operatingSystem": "All",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "keywords": "AI text humanizer, make AI text sound human, bypass AI detection, humanize AI text, AI essay rewriter, AI paraphraser, AI text converter, ChatGPT humanizer, AI writing tool",
+            "softwareHelp": {
+              "@type": "CreativeWork",
+              "text": "A tool that helps transform AI-generated text to sound more human and bypass AI detection tools."
+            }
+          })}
+        </script>
+        
+        {/* FAQ Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How does Humanize.ai make AI text undetectable?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Humanize.ai uses advanced language processing to rewrite AI-generated text in a way that preserves the original meaning but makes it sound more naturally human, helping it bypass AI detection tools."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can Humanize.ai help with my essay?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes! Humanize.ai is designed specifically to help students with essays by making AI-generated text sound more natural and undetectable by AI checkers while maintaining the original meaning."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Will my professor know I used AI?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "When you use Humanize.ai to rewrite your AI-generated content, the resulting text becomes much more difficult for AI detection tools to identify, making it much less likely that your professor will know AI was used."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is Humanize.ai free to use?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, Humanize.ai is a free tool that helps transform AI text into naturally human-sounding content."
+                }
+              }
+            ]
+          })}
+        </script>
+      </Head>
+      <div style={{
       fontFamily: '"Inter", system-ui, sans-serif',
       maxWidth: '900px',
       margin: '0 auto',
@@ -163,11 +226,19 @@ export default function Home() {
           WebkitTextFillColor: 'transparent',
           margin: '0 0 10px'
         }}>
-          Humanize.ai
+          Humanize.ai: AI Text Humanizer
         </h1>
         <p style={{color: '#718096', fontSize: '18px'}}>
-          Transform AI-generated text to sound naturally human and bypass detection
+          Transform AI-generated essays and content to sound naturally human and bypass AI detection
         </p>
+        <h2 style={{
+          fontSize: '18px',
+          color: '#4a5568',
+          margin: '15px 0 0',
+          fontWeight: '500'
+        }}>
+          The #1 tool for students to make AI essays undetectable
+        </h2>
       </header>
       
       <div style={{
@@ -192,7 +263,7 @@ export default function Home() {
             setInput(e.target.value);
             setCharacterCount(e.target.value.length);
           }}
-          placeholder="Paste AI-generated text here..."
+          placeholder="Paste your AI-generated essay or text here to make it sound human and bypass detection..."
           style={{
             width: '100%',
             minHeight: '180px',
@@ -205,27 +276,26 @@ export default function Home() {
             lineHeight: '1.6'
           }}
         />
-        <div style={{textAlign: 'right', fontSize: '14px', color: '#a0aec0', marginTop: '8px'}}>
-          {characterCount} / 5000
+        <div style={{
+          display: 'flex',
+          justifyContent: 'space-between', 
+          fontSize: '14px', 
+          color: '#a0aec0', 
+          marginTop: '8px'
+        }}>
+          <span style={{
+            color: characterCount < 250 ? '#e53e3e' : (characterCount > 8000 ? '#e53e3e' : '#38a169')
+          }}>
+            {characterCount < 250 ? `${250 - characterCount} more characters needed` : ''}
+            {characterCount > 8000 ? `${characterCount - 8000} characters over limit` : ''}
+            {characterCount >= 250 && characterCount <= 8000 ? 'Text length is good' : ''}
+          </span>
+          <span>
+            {characterCount} / 8000
+          </span>
         </div>
         
-        {originalScore !== null && (
-          <div style={{marginTop: '15px'}}>
-            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px'}}>
-              <span style={{fontWeight: '600'}}>AI Detection Score:</span>
-              <div style={{
-                backgroundColor: `${getScoreColor(originalScore)}20`,
-                color: getScoreColor(originalScore),
-                fontWeight: '600',
-                padding: '4px 12px',
-                borderRadius: '20px',
-                fontSize: '14px'
-              }}>
-                {originalScore}% AI
-              </div>
-            </div>
-          </div>
-        )}
+        {/* AI percentage feature removed */}
       </div>
 
       <div style={{
@@ -314,7 +384,7 @@ export default function Home() {
       
       <button 
         onClick={handleRewrite} 
-        disabled={loading || detectLoading}
+        disabled={loading}
         style={{
           backgroundColor: '#4299e1',
           backgroundImage: 'linear-gradient(135deg, #3a7bd5, #00d2ff)',
@@ -322,8 +392,8 @@ export default function Home() {
           padding: '14px 28px',
           border: 'none',
           borderRadius: '12px',
-          cursor: (loading || detectLoading) ? 'not-allowed' : 'pointer',
-          opacity: (loading || detectLoading) ? 0.7 : 1,
+          cursor: loading ? 'not-allowed' : 'pointer',
+          opacity: loading ? 0.7 : 1,
           fontSize: '18px',
           fontWeight: '600',
           width: '100%',
@@ -335,10 +405,10 @@ export default function Home() {
           gap: '12px'
         }}
       >
-        {(loading || detectLoading) ? (
-          <span>{loading ? 'Rewriting Text...' : 'Analyzing Text...'}</span>
+        {loading ? (
+          <span>Rewriting Text...</span>
         ) : (
-          <span>Humanize Text</span>
+          <span>Make AI Text Sound Human</span>
         )}
       </button>
 
@@ -363,49 +433,23 @@ export default function Home() {
                 fontSize: '18px',
                 fontWeight: '600'
               }}>Humanized Text</h3>
-              {rewrittenScore !== null && (
-                <div style={{marginTop: '8px'}}>
-                  <div style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    marginBottom: '8px'
-                  }}>
-                    <span style={{fontSize: '15px', fontWeight: '500'}}>AI Detection Score:</span> 
-                    <div style={{
-                      backgroundColor: `${getScoreColor(rewrittenScore)}20`,
-                      color: getScoreColor(rewrittenScore),
-                      fontWeight: '600',
-                      padding: '4px 12px',
-                      borderRadius: '20px',
-                      fontSize: '14px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px'
-                    }}>
-                      <span>{rewrittenScore}% AI</span>
-                      
-                      {rewrittenScore > 30 && (
-                        <button
-                          onClick={handleTryAgain}
-                          style={{
-                            backgroundColor: 'rgba(255, 255, 255, 0.6)',
-                            border: 'none',
-                            borderRadius: '50%',
-                            width: '22px',
-                            height: '22px',
-                            cursor: 'pointer',
-                            fontWeight: 'bold'
-                          }}
-                          title="Try stronger humanization"
-                        >
-                          ↻
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              )}
+              <div style={{marginTop: '8px'}}>
+                <button
+                  onClick={handleTryAgain}
+                  style={{
+                    backgroundColor: 'rgba(66, 153, 225, 0.1)',
+                    border: '1px solid #bee3f8',
+                    borderRadius: '8px',
+                    padding: '5px 10px',
+                    cursor: 'pointer',
+                    fontSize: '14px',
+                    color: '#2b6cb0'
+                  }}
+                  title="Try stronger humanization"
+                >
+                  Try Stronger Humanization ↻
+                </button>
+              </div>
             </div>
             <div style={{display: 'flex', gap: '10px'}}>
               <button
@@ -520,15 +564,7 @@ export default function Home() {
             </pre>
           )}
           
-          {detectLoading && (
-            <div style={{
-              textAlign: 'center',
-              marginTop: '20px',
-              color: '#718096'
-            }}>
-              Analyzing humanized text...
-            </div>
-          )}
+          {/* AI detection loading indicator removed */}
         </div>
       )}
       
@@ -540,13 +576,43 @@ export default function Home() {
         paddingTop: '20px',
         textAlign: 'center'
       }}>
-        <p>© 2025 Humanize.ai — Transform AI text into natural human writing</p>
+        <p>© 2025 Humanize.ai — The #1 Tool to Transform AI Text into Natural Human Writing</p>
         <div style={{
-          marginTop: '10px',
-          fontSize: '13px'
+          marginTop: '20px',
+          fontSize: '14px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '10px'
         }}>
+          <p>Trusted by students and professionals to bypass AI detection tools like Turnitin, GPTZero, and ZeroGPT</p>
+          <div style={{ marginTop: '10px' }}>
+            <h3 style={{ fontSize: '16px', marginBottom: '10px', color: '#4a5568' }}>Why Use Humanize.ai?</h3>
+            <ul style={{ 
+              textAlign: 'left', 
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+              gap: '10px',
+              padding: '0',
+              margin: '0',
+              listStyle: 'none'
+            }}>
+              <li style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                <span style={{ color: '#4299e1' }}>✓</span> Make AI-written essays undetectable
+              </li>
+              <li style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                <span style={{ color: '#4299e1' }}>✓</span> Bypass AI detection tools
+              </li>
+              <li style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                <span style={{ color: '#4299e1' }}>✓</span> Maintain original meaning
+              </li>
+              <li style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                <span style={{ color: '#4299e1' }}>✓</span> Sound naturally human
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
+    </>
   );
 }
