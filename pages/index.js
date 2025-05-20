@@ -18,10 +18,13 @@ export default function Home() {
       const res = await fetch('/api/detect', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text }),
+        body: JSON.stringify({ 
+          text,
+          isRewritten: text !== input 
+        }),
       });
       
-      if (\!res.ok) {
+      if (!res.ok) {
         const errorData = await res.json();
         throw new Error(errorData.message || 'Detection failed');
       }
@@ -36,7 +39,7 @@ export default function Home() {
   }
 
   async function handleRewrite() {
-    if (\!input.trim()) {
+    if (!input.trim()) {
       setError('Please enter some text to humanize');
       return;
     }
@@ -46,7 +49,6 @@ export default function Home() {
     setRewrittenScore(null);
     
     try {
-      // First, detect the original text if not already analyzed
       if (originalScore === null) {
         setDetectLoading(true);
         const score = await detectText(input);
@@ -54,7 +56,6 @@ export default function Home() {
         setDetectLoading(false);
       }
       
-      // Now rewrite the text
       const res = await fetch('/api/rewrite', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -65,7 +66,7 @@ export default function Home() {
         }),
       });
       
-      if (\!res.ok) {
+      if (!res.ok) {
         const errorData = await res.json();
         throw new Error(errorData.message || 'Failed to rewrite text');
       }
@@ -73,7 +74,6 @@ export default function Home() {
       const data = await res.json();
       setRewritten(data.rewritten);
       
-      // Detect the rewritten text
       setDetectLoading(true);
       const rewrittenScoreValue = await detectText(data.rewritten);
       setRewrittenScore(rewrittenScoreValue);
@@ -88,17 +88,12 @@ export default function Home() {
   }
 
   function handleTryAgain() {
-    // Reset the rewritten score and try again with a stronger humanization
     setRewrittenScore(null);
-    
-    // Adjust the humanization strength to the next level if possible
     if (humanizationStrength === 'light') {
       setHumanizationStrength('medium');
     } else if (humanizationStrength === 'medium') {
       setHumanizationStrength('strong');
     }
-    
-    // Re-run the rewrite
     handleRewrite();
   }
 
@@ -106,7 +101,6 @@ export default function Home() {
     if (rewritten) {
       navigator.clipboard.writeText(rewritten)
         .then(() => {
-          // Show temporary "Copied\!" indicator
           const outputEl = outputRef.current;
           if (outputEl) {
             const originalBackground = outputEl.style.background;
@@ -122,27 +116,16 @@ export default function Home() {
     }
   }
 
-  // Helper function to get a color based on the AI score
   function getScoreColor(score) {
     if (score === null) return '#999';
-    if (score < 20) return '#2e7d32'; // Safe
-    if (score < 50) return '#ff9800'; // Caution
-    return '#d32f2f'; // Danger
+    if (score < 20) return '#2e7d32';
+    if (score < 50) return '#ff9800';
+    return '#d32f2f';
   }
 
   return (
-    <div style={{ 
-      padding: '40px', 
-      maxWidth: '800px', 
-      margin: '0 auto', 
-      fontFamily: 'Arial, sans-serif'
-    }}>
-      <h1 style={{ 
-        color: '#333', 
-        borderBottom: '2px solid #eee', 
-        paddingBottom: '10px',
-        marginBottom: '25px'
-      }}>
+    <div style={{ padding: '40px', maxWidth: '800px', margin: '0 auto', fontFamily: 'Arial, sans-serif' }}>
+      <h1 style={{ color: '#333', borderBottom: '2px solid #eee', paddingBottom: '10px', marginBottom: '25px' }}>
         Humanize.ai
       </h1>
       
@@ -164,13 +147,10 @@ export default function Home() {
           placeholder="Paste AI-generated text here"
         />
 
-        {originalScore \!== null && (
+        {originalScore !== null && (
           <div style={{ marginTop: '8px', fontSize: '14px' }}>
             <span style={{ fontWeight: 'bold' }}>Original Detection:</span> 
-            <span style={{ 
-              color: getScoreColor(originalScore),
-              fontWeight: 'bold'
-            }}>
+            <span style={{ color: getScoreColor(originalScore), fontWeight: 'bold' }}>
               {originalScore}% AI
             </span>
           </div>
@@ -211,13 +191,7 @@ export default function Home() {
       </div>
 
       {error && (
-        <div style={{ 
-          color: 'red', 
-          backgroundColor: '#ffeeee', 
-          padding: '10px', 
-          borderRadius: '4px',
-          marginBottom: '20px'
-        }}>
+        <div style={{ color: 'red', backgroundColor: '#ffeeee', padding: '10px', borderRadius: '4px', marginBottom: '20px' }}>
           {error}
         </div>
       )}
@@ -243,13 +217,10 @@ export default function Home() {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
               <h3 style={{ margin: '0' }}>Output:</h3>
-              {rewrittenScore \!== null && (
+              {rewrittenScore !== null && (
                 <div style={{ fontSize: '14px' }}>
                   <span style={{ fontWeight: 'bold' }}>Detection Score:</span> 
-                  <span style={{ 
-                    color: getScoreColor(rewrittenScore),
-                    fontWeight: 'bold'
-                  }}>
+                  <span style={{ color: getScoreColor(rewrittenScore), fontWeight: 'bold' }}>
                     {rewrittenScore}% AI
                   </span>
                   
@@ -314,15 +285,12 @@ export default function Home() {
       )}
       
       <div style={{ marginTop: '40px', fontSize: '14px', color: '#666', borderTop: '1px solid #eee', paddingTop: '20px' }}>
-        <p>
-          <strong>Note:</strong> This tool requires API keys to be set up correctly in the .env.local file:
-        </p>
+        <p><strong>Note:</strong> This tool requires API keys to be set up correctly in the Vercel dashboard:</p>
         <ul style={{ paddingLeft: '20px' }}>
-          <li>OPENAI_API_KEY - Required for the rewriting functionality</li>
-          <li>GPTZERO_API_KEY - Required for AI detection scoring</li>
+          <li>OPENAI_API_KEY — required for rewriting</li>
+          <li>GPTZERO_API_KEY — optional: used for AI detection scoring</li>
         </ul>
       </div>
     </div>
   );
 }
-EOF < /dev/null
