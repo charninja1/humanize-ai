@@ -171,6 +171,9 @@ export default function Home() {
         {/* Google AdSense */}
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4611074664474947"
           crossorigin="anonymous"></script>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
         
         {/* Schema.org structured data */}
         <script type="application/ld+json">
