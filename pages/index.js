@@ -247,8 +247,7 @@ export default function Home() {
             background: 'linear-gradient(90deg, #3a7bd5, #00d2ff)',
             transform: 'scaleX(0)',
             transformOrigin: 'left',
-            animation: 'expandLine 0.8s ease-out forwards 0.3s',
-            '@keyframes expandLine': 'to { transform: scaleX(1) }'
+            animation: 'expandLine 0.8s ease-out forwards 0.3s'
           }}></span>
         </h1>
         <p style={{ 
@@ -258,8 +257,7 @@ export default function Home() {
           margin: '0 auto',
           opacity: 0,
           transform: 'translateY(10px)',
-          animation: 'fadeUp 0.8s ease-out forwards 0.6s',
-          '@keyframes fadeUp': 'to { opacity: 1; transform: translateY(0); }'
+          animation: 'fadeUp 0.8s ease-out forwards 0.6s'
         }}>
           Transform AI-generated text to sound naturally human and bypass detection
         </p>
@@ -556,8 +554,7 @@ export default function Home() {
         {(loading || detectLoading) && (
           <>
             <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style={{
-              animation: 'spin 1s linear infinite',
-              '@keyframes spin': 'from { transform: rotate(0deg) } to { transform: rotate(360deg) }'
+              animation: 'spin 1s linear infinite'
             }}>
               <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="4" fill="none" strokeDasharray="32" strokeDashoffset="8" />
             </svg>
@@ -587,8 +584,7 @@ export default function Home() {
           backgroundSize: '200% 100%',
           animation: 'shimmer 2s infinite',
           zIndex: 0,
-          pointerEvents: 'none',
-          '@keyframes shimmer': 'from { background-position: 100% 0 } to { background-position: -100% 0 }'
+          pointerEvents: 'none'
         }}></div>
       </button>
 
@@ -599,8 +595,7 @@ export default function Home() {
           boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)',
           padding: '25px',
           border: '1px solid #e2e8f0',
-          animation: 'fadeIn 0.5s ease-out',
-          '@keyframes fadeIn': 'from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); }'
+          animation: 'fadeIn 0.5s ease-out'
         }}>
           <div style={{ 
             display: 'flex', 
@@ -896,8 +891,7 @@ export default function Home() {
               gap: '10px' 
             }}>
               <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style={{
-                animation: 'spin 1s linear infinite',
-                '@keyframes spin': 'from { transform: rotate(0deg) } to { transform: rotate(360deg) }'
+                animation: 'spin 1s linear infinite'
               }}>
                 <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" strokeDasharray="32" strokeDashoffset="8" />
               </svg>
