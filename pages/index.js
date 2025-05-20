@@ -141,26 +141,26 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Humanize.ai - Make AI Text Sound Human | Bypass AI Detection</title>
+        <title>MakeAIHuman.org - Make AI Text Sound Human | Bypass AI Detection</title>
         <meta name="description" content="Transform AI-generated text into natural human writing. Our AI text humanizer helps students and professionals make their essays and content sound naturally human and bypass AI detection tools." />
         <meta name="keywords" content="AI text humanizer, make AI text sound human, bypass AI detection, humanize AI text, AI essay rewriter, AI paraphraser, AI text converter, ChatGPT humanizer, AI writing tool" />
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://humanize.ai/" />
-        <meta property="og:title" content="Humanize.ai - Make AI Text Sound Human | Bypass AI Detection" />
+        <meta property="og:url" content="https://makeaihuman.org/" />
+        <meta property="og:title" content="MakeAIHuman.org - Make AI Text Sound Human | Bypass AI Detection" />
         <meta property="og:description" content="Transform AI-generated text into natural human writing. Our tool helps students make their essays sound naturally human and undetectable by AI checkers." />
-        <meta property="og:image" content="https://humanize.ai/og-image.jpg" />
+        <meta property="og:image" content="https://makeaihuman.org/og-image.jpg" />
         
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://humanize.ai/" />
-        <meta property="twitter:title" content="Humanize.ai - Make AI Text Sound Human | Bypass AI Detection" />
+        <meta property="twitter:url" content="https://makeaihuman.org/" />
+        <meta property="twitter:title" content="MakeAIHuman.org - Make AI Text Sound Human | Bypass AI Detection" />
         <meta property="twitter:description" content="Transform AI-generated text into natural human writing. Our tool helps students make their essays sound naturally human and undetectable by AI checkers." />
-        <meta property="twitter:image" content="https://humanize.ai/og-image.jpg" />
+        <meta property="twitter:image" content="https://makeaihuman.org/og-image.jpg" />
         
         {/* Canonical URL */}
-        <link rel="canonical" href="https://humanize.ai/" />
+        <link rel="canonical" href="https://makeaihuman.org/" />
         
         {/* Favicon */}
         <link rel="icon" href="/favicon.ico" />
@@ -173,8 +173,8 @@ export default function Home() {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebApplication",
-            "name": "Humanize.ai",
-            "url": "https://humanize.ai/",
+            "name": "MakeAIHuman.org",
+            "url": "https://makeaihuman.org/",
             "description": "Transform AI-generated text into natural human writing. Our AI text humanizer helps students and professionals make their essays and content sound naturally human and bypass AI detection tools.",
             "applicationCategory": "Education",
             "operatingSystem": "All",
@@ -269,7 +269,7 @@ export default function Home() {
           position: 'relative',
           zIndex: '1'
         }}>
-          Humanize.ai
+          MakeAIHuman.org
         </h1>
         <p style={{
           color: '#4a5568', 
@@ -945,7 +945,7 @@ export default function Home() {
         borderRadius: '0 0 16px 16px',
         padding: '30px'
       }}>
-        <p>© 2025 Humanize.ai — The #1 Tool to Transform AI Text into Natural Human Writing</p>
+        <p>© 2025 MakeAIHuman.org — The #1 Tool to Transform AI Text into Natural Human Writing</p>
         <div style={{
           marginTop: '20px',
           fontSize: '14px',
