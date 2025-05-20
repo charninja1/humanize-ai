@@ -141,22 +141,22 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>MakeAIHuman.org - Make AI Text Sound Human | Bypass AI Detection</title>
-        <meta name="description" content="Transform AI-generated text into natural human writing. Our AI text humanizer helps students and professionals make their essays and content sound naturally human and bypass AI detection tools." />
+        <title>MakeAIHuman.org - Transform AI Text to Sound Naturally Human</title>
+        <meta name="description" content="Transform AI-generated text into natural human writing. Our AI text humanizer helps professionals, writers and content creators make their content sound more naturally human and authentic." />
         <meta name="keywords" content="AI text humanizer, make AI text sound human, bypass AI detection, humanize AI text, AI essay rewriter, AI paraphraser, AI text converter, ChatGPT humanizer, AI writing tool" />
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://makeaihuman.org/" />
-        <meta property="og:title" content="MakeAIHuman.org - Make AI Text Sound Human | Bypass AI Detection" />
-        <meta property="og:description" content="Transform AI-generated text into natural human writing. Our tool helps students make their essays sound naturally human and undetectable by AI checkers." />
+        <meta property="og:title" content="MakeAIHuman.org - Transform AI Text to Sound Naturally Human" />
+        <meta property="og:description" content="Transform AI-generated text into natural human writing. Our tool helps professionals, writers and content creators make their content sound more naturally human and authentic." />
         <meta property="og:image" content="https://makeaihuman.org/og-image.jpg" />
         
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://makeaihuman.org/" />
-        <meta property="twitter:title" content="MakeAIHuman.org - Make AI Text Sound Human | Bypass AI Detection" />
-        <meta property="twitter:description" content="Transform AI-generated text into natural human writing. Our tool helps students make their essays sound naturally human and undetectable by AI checkers." />
+        <meta property="twitter:title" content="MakeAIHuman.org - Transform AI Text to Sound Naturally Human" />
+        <meta property="twitter:description" content="Transform AI-generated text into natural human writing. Our tool helps professionals, writers and content creators make their content sound more naturally human and authentic." />
         <meta property="twitter:image" content="https://makeaihuman.org/og-image.jpg" />
         
         {/* Canonical URL */}
@@ -182,7 +182,7 @@ export default function Home() {
             "@type": "WebApplication",
             "name": "MakeAIHuman.org",
             "url": "https://makeaihuman.org/",
-            "description": "Transform AI-generated text into natural human writing. Our AI text humanizer helps students and professionals make their essays and content sound naturally human and bypass AI detection tools.",
+            "description": "Transform AI-generated text into natural human writing. Our AI text humanizer helps professionals, writers and content creators make their content sound more naturally human and authentic.",
             "applicationCategory": "Education",
             "operatingSystem": "All",
             "offers": {
@@ -206,34 +206,34 @@ export default function Home() {
             "mainEntity": [
               {
                 "@type": "Question",
-                "name": "How does Humanize.ai make AI text undetectable?",
+                "name": "How does MakeAIHuman.org improve AI-generated text?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Humanize.ai uses advanced language processing to rewrite AI-generated text in a way that preserves the original meaning but makes it sound more naturally human, helping it bypass AI detection tools."
+                  "text": "MakeAIHuman.org uses advanced language processing to rewrite AI-generated text in a way that preserves the original meaning while making it sound more naturally human and authentic."
                 }
               },
               {
                 "@type": "Question",
-                "name": "Can Humanize.ai help with my essay?",
+                "name": "Can MakeAIHuman.org help with my content?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Yes! Humanize.ai is designed specifically to help students with essays by making AI-generated text sound more natural and undetectable by AI checkers while maintaining the original meaning."
+                  "text": "Yes! MakeAIHuman.org is designed to help with all types of content including articles, reports, marketing copy, and creative writing by making AI-generated text sound more natural and authentic while maintaining the original meaning."
                 }
               },
               {
                 "@type": "Question",
-                "name": "Will my professor know I used AI?",
+                "name": "How does MakeAIHuman.org enhance writing?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "When you use Humanize.ai to rewrite your AI-generated content, the resulting text becomes much more difficult for AI detection tools to identify, making it much less likely that your professor will know AI was used."
+                  "text": "When you use MakeAIHuman.org to rewrite your AI-generated content, the resulting text sounds more authentic and natural, with improved flow and readability while preserving your original message and intent."
                 }
               },
               {
                 "@type": "Question",
-                "name": "Is Humanize.ai free to use?",
+                "name": "Is MakeAIHuman.org free to use?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Yes, Humanize.ai is a free tool that helps transform AI text into naturally human-sounding content."
+                  "text": "Yes, MakeAIHuman.org is a free tool that helps transform AI-generated text into naturally human-sounding content that reads more authentically."
                 }
               }
             ]
@@ -302,7 +302,7 @@ export default function Home() {
           position: 'relative',
           zIndex: '1'
         }}>
-          The #1 tool for students to make AI essays undetectable
+          Advanced AI text humanizer for natural-sounding content
         </h2>
       </header>
       
@@ -960,9 +960,9 @@ export default function Home() {
           flexDirection: 'column',
           gap: '10px'
         }}>
-          <p>Trusted by students and professionals to bypass AI detection tools like Turnitin, GPTZero, and ZeroGPT</p>
+          <p>Trusted by professionals, writers and content creators to enhance AI-generated text</p>
           <div style={{ marginTop: '10px' }}>
-            <h3 style={{ fontSize: '16px', marginBottom: '10px', color: '#4a5568' }}>Why Use Humanize.ai?</h3>
+            <h3 style={{ fontSize: '16px', marginBottom: '10px', color: '#4a5568' }}>Why Use MakeAIHuman.org?</h3>
             <ul style={{ 
               textAlign: 'left', 
               display: 'grid',
@@ -973,10 +973,10 @@ export default function Home() {
               listStyle: 'none'
             }}>
               <li style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                <span style={{ color: '#4299e1' }}>✓</span> Make AI-written essays undetectable
+                <span style={{ color: '#4299e1' }}>✓</span> Enhance AI-generated content
               </li>
               <li style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                <span style={{ color: '#4299e1' }}>✓</span> Bypass AI detection tools
+                <span style={{ color: '#4299e1' }}>✓</span> Create more authentic writing
               </li>
               <li style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
                 <span style={{ color: '#4299e1' }}>✓</span> Maintain original meaning
