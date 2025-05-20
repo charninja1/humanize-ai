@@ -142,6 +142,7 @@ export default function Home() {
     <>
       <Head>
         <title>MakeAIHuman.org - Transform AI Text to Sound Naturally Human</title>
+        <meta name="google-site-verification" content="CVBuUi3ueMfmls-iuSBuBJ_RtZFjHhoxtQAyq4RxutI" />
         <meta name="description" content="Transform AI-generated text into natural human writing. Our AI text humanizer helps professionals, writers and content creators make their content sound more naturally human and authentic." />
         <meta name="keywords" content="AI text humanizer, make AI text sound human, bypass AI detection, humanize AI text, AI essay rewriter, AI paraphraser, AI text converter, ChatGPT humanizer, AI writing tool" />
         
