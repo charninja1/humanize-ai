@@ -545,7 +545,6 @@ export default function Home() {
           marginTop: '10px',
           fontSize: '13px'
         }}>
-          <span>Requires: OPENAI_API_KEY & GPTZERO_API_KEY</span>
         </div>
       </div>
     </div>
