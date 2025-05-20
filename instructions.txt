@@ -1,0 +1,63 @@
+✅ Instructions for Finishing Humanize.ai App
+
+Goal
+Improve the MVP of Humanize.ai so it:
+
+Rewrites AI-generated text to sound human
+Passes AI detection tools
+Optionally, shows detection scores from services like GPTZero or Originality.ai
+🔧 Project Setup
+
+Framework: Next.js
+Hosting: Vercel
+Rewrite model: OpenAI GPT-4.1
+Current functionality:
+Frontend text input
+Backend /api/rewrite route that uses GPT-4 to rewrite pasted text
+No user auth, no database
+✅ Tasks to Complete
+
+🔹 1. Improve Rewrite Prompting Logic
+Modify the OpenAI prompt in /pages/api/rewrite.js to better evade AI detection.
+Suggestions:
+Introduce sentence variation, natural tone shifts, mild redundancy
+Mimic human quirks (slightly imperfect phrasing, minor hesitations)
+Optionally, add a slider for "humanization strength" that controls rewrite intensity
+🔹 2. Integrate Detection API (e.g., GPTZero)
+After rewriting, call GPTZero (or Originality.ai) to analyze the new text.
+Show a "Detection Score" before and after humanization.
+GPTZero API: https://gptzero.me (requires signup)
+Display results on frontend:
+Original: 85% AI
+Rewritten: 18% AI
+Let users click “Try Again” if score is too high.
+🔹 3. Frontend Enhancements
+Add:
+"Copy Output" button
+"Download as .txt" button
+Optional toggle: "Preserve tone/style" (boolean flag to backend)
+Improve layout and styling (CSS/Responsive)
+Use Tailwind or plain CSS
+Make it clean and readable
+🔹 4. Error Handling
+Gracefully handle:
+OpenAI API errors (e.g., quota issues)
+Detection API timeouts/failures
+Empty input or oversized text
+Show toast or alert messages when needed
+📦 Environment Variables (in .env.local)
+
+OPENAI_API_KEY: Your OpenAI secret key
+GPTZERO_API_KEY or ORIGINALITY_API_KEY: If detection service is used
+✅ Deployment
+
+Already hosted on Vercel
+Just push changes to main branch — Vercel auto-deploys
+🔚 Outcome
+
+Final product should:
+
+Take AI-generated text
+Rewrite it to sound human
+Show before/after detection scores
+Let user copy/download the result
