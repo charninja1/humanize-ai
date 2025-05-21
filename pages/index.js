@@ -340,6 +340,35 @@ export default function Home() {
           }}>1</span>
           Paste Your AI Text
         </label>
+        <section style={{
+  backgroundColor: 'white',
+  padding: '30px',
+  borderRadius: '16px',
+  marginBottom: '30px',
+  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)',
+  border: '1px solid #e2e8f0'
+}}>
+  <h2 style={{ fontSize: '22px', color: '#2d3748', marginBottom: '12px' }}>What is MakeAIHuman.org?</h2>
+  <p style={{ fontSize: '16px', color: '#4a5568', lineHeight: '1.7' }}>
+    MakeAIHuman.org is a free AI text rewriting tool that helps you transform robotic, AI-generated content into
+    naturally human-sounding writing. Whether you're using ChatGPT, Jasper, or another model, our tool rewrites your
+    text with improved flow, tone, and authenticity — while staying true to your original meaning.
+  </p>
+
+  <h3 style={{ fontSize: '18px', marginTop: '20px', marginBottom: '10px', color: '#2d3748' }}>How does it work?</h3>
+  <p style={{ fontSize: '16px', color: '#4a5568', lineHeight: '1.7' }}>
+    Just paste your AI-generated content into the box below, select a rewrite strength, and click the "Make AI Text
+    Sound Human" button. You'll get a new version that's more readable and less detectable by tools like GPTZero.
+  </p>
+
+  <h3 style={{ fontSize: '18px', marginTop: '20px', marginBottom: '10px', color: '#2d3748' }}>Why use it?</h3>
+  <ul style={{ paddingLeft: '20px', color: '#4a5568', lineHeight: '1.6' }}>
+    <li>✔ Improve clarity and natural tone</li>
+    <li>✔ Avoid AI detection tools in school or online</li>
+    <li>✔ Make essays, reports, and blog posts sound more human</li>
+    <li>✔ Free to use, with no login required</li>
+  </ul>
+</section>
         <textarea
           ref={inputRef}
           value={input}
